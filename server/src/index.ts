@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
 import dotenv from 'dotenv';
-import { version } from 'os';
+import connectDB from './db/connection';
 dotenv.config();
 
 const app = express();
@@ -18,8 +18,10 @@ app.get('/', (req: Request, res: Response) => {
     });
 });
 
- 
+connectDB();
+
 app.use('/users', userRoutes)
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
