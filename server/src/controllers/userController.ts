@@ -1,6 +1,9 @@
-import {Request, Response} from 'express'
+import {NextFunction, Request, Response} from 'express'
 import UserModel from '../models/userModel'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export async function getUsers(req:Request, res:Response): Promise<void>{
     try{
@@ -14,7 +17,7 @@ export async function getUsers(req:Request, res:Response): Promise<void>{
     } 
 }
 
-export async function registerUser(req:Request, res:Response){
+export async function registerUser(req:Request, res:Response, next:NextFunction){
     try{
         const {name, email, password}:{name:string, email:string, password:string}=req.body;
         const salt:string=bcrypt.genSaltSync(10);
@@ -32,13 +35,13 @@ export async function registerUser(req:Request, res:Response){
         res.status(201).json({message:"User registered successfully"});
     }
     catch(error){
-        console.log(error);
-        res.status(500).send({error:'Internal server error'});
+        // console.log(error);
+        next(error);
 
     }
 }
 
-export async function loginUsers(req:Request, res:Response){
+export async function loginUsers(req:Request, res:Response, next:NextFunction){
     try{
         const {email, password}:{email:string, password:string}=req.body;
         const findemail=await UserModel.findOne({email});
@@ -49,12 +52,15 @@ export async function loginUsers(req:Request, res:Response){
         if(!isMatch){
             res.status(400).json({error:"Invalid password"});
         }
-        res.status(200).json({message:"Login Successfull", data:findemail})
+        const token = jwt.sign({ userId: findemail?._id }, process.env.SECRET_KEY??'', {
+            expiresIn: '1 hour'
+          });
+        res.json({token})
         
     }
     catch(error){
-        console.log(error);
-        res.status(500).send({error:'Internal server error'});
+        // console.log(error);
+        next(error);
 
     }
 }
