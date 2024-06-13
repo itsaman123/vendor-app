@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.get('/', (req: Request, res: Response) => {
     res.json({
         name:"Honey Kalash",
-        target:"build under 2 months",
+        developer: "itsaman123",
         version: "1.0.0",
     });
 });

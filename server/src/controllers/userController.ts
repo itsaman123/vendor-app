@@ -55,7 +55,7 @@ export async function loginUsers(req:Request, res:Response, next:NextFunction){
         const token = jwt.sign({ userId: findemail?._id }, process.env.SECRET_KEY??'', {
             expiresIn: '1 hour'
           });
-        res.json({token})
+        res.json({token, data:findemail})
         
     }
     catch(error){

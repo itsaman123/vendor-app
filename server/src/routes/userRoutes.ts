@@ -1,9 +1,9 @@
 const router=require('express').Router();
-import {getUsers} from '../controllers/userController';
-import {registerUser} from '../controllers/userController';
-import {loginUsers} from '../controllers/userController';
+import {getUsers, loginUsers, registerUser} from '../controllers/userController';
+import { authenticate } from '../middleware/auth';
+ import {adminCheck} from '../middleware/checkadmin'
 
-router.get('/v1/getAllUsers', getUsers);
+router.get('/v1/getAllUsers',authenticate, adminCheck, getUsers);
 router.post('/v1/register', registerUser);
 router.post('/v1/login', loginUsers);
 
