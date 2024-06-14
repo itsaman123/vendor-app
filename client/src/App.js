@@ -1,9 +1,12 @@
-import React from 'react'
-
-const App = () => {
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './components/Home'
+export default function App() {
   return (
-    <div>App</div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
