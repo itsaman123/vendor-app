@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
+import productRoutes from './routes/addProductsRoutes';
 import dotenv from 'dotenv';
 import connectDB from './db/connection';
 dotenv.config();
@@ -21,6 +22,7 @@ app.get('/', (req: Request, res: Response) => {
 connectDB();
 
 app.use('/users', userRoutes)
+app.use('/product', productRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
