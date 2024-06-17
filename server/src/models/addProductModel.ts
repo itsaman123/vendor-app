@@ -8,6 +8,7 @@ interface IAddProducts extends Document{
     discount:number,
     category:string,
     description:string,
+    size:string,
     image:string,
     rating:number,
     review:number,
@@ -46,6 +47,10 @@ const productSchema:Schema<IAddProducts>=new Schema({
         required:true
     },
     image:{
+        type: String,
+        required:true
+    },
+    size:{
         type: String,
         required:true
     },
