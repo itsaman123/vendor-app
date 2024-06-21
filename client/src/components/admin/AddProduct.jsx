@@ -25,31 +25,31 @@ const AddProduct = () => {
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
-        // const { title, name, price, description, discount, size, review, rating, category, stock, image } = formData;    
-        // try {
-        //     const data = await axios.post('http://localhost:8000/product/v1/addProducts', {
-        //         title,
-        //         name,
-        //         price,
-        //         description,
-        //         discount,
-        //         size,
-        //         review,
-        //         rating,
-        //         category,
-        //         stock,
-        //         image
-        //       });
-        //       if (data.status === false) {
-        //         console.log("error")
-        //       }
-        //       if (data.status === true) {
-        //         console.log("success")
-        //       }
+        const { title, name, price, description, discount, size, review, rating, category, stock, image } = formData;    
+        try {
+            const data = await axios.post('https://vendor-api-chi.vercel.app/product/v1/addProducts', {
+                title,
+                name,
+                price,
+                description,
+                discount,
+                size,
+                review,
+                rating,
+                category,
+                stock,
+                image
+              });
+              if (data.status === false) {
+                console.log("error")
+              }
+              if (data.status === true) {
+                console.log("success")
+              }
             
-        // } catch (error) {
-        //     console.error('Error:', error);
-        // }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
     
 

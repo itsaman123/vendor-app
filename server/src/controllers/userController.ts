@@ -35,7 +35,7 @@ export async function registerUser(req:Request, res:Response, next:NextFunction)
         res.status(201).json({message:"User registered successfully"});
     }
     catch(error){
-        // console.log(error);
+        console.log(error);
         next(error);
 
     }
