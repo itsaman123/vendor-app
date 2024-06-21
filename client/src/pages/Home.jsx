@@ -8,7 +8,8 @@ const Home = () => {
   return (
     <>
     <Navbar />    
-    <AddProduct />
+    <h1 className='text-center max-h-screen'>This is Home page</h1>
+
     <Footer />
     </>
   )

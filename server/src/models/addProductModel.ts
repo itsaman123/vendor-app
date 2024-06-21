@@ -2,69 +2,57 @@ import mongoose, {Document, Schema, Model} from 'mongoose'
 
 interface IAddProducts extends Document{
     p_id:number,
-    title:string,
-    name:string,
-    price:number,
-    discount:number,
-    category:string,
-    description:string,
-    size:string,
-    image:string,
-    rating:number,
+    title:string,// 
+    name:string, //
+    price:number, //
+    discount:number, //
+    category:string, //
+    description:string, //
+    size:string, //
+    image:string, //
+    rating:number, //
     review:number,
-    stock:number,
+    stock:number, //
     created_at:Date,
     updated_at:Date
 }
 
 const productSchema:Schema<IAddProducts>=new Schema({
     p_id:{
-        type: Number,
-        required:true
+        type: Number, 
     },
     title:{
-        type: String,
-        required:true
+        type: String, 
     },
     name:{
-        type: String,
-        required:true
+        type: String, 
     },
     price:{
-        type: Number,
-        required:true
+        type: Number, 
     },
     discount:{
-        type: Number,
-        required:true
+        type: Number, 
     },
     category:{
-        type: String,
-        required:true
+        type: String, 
     },
     description:{
-        type: String,
-        required:true
+        type: String, 
     },
     image:{
-        type: String,
-        required:true
+        type: String, 
     },
     size:{
-        type: String,
-        required:true
+        type: String, 
     },
     rating:{
-        type: Number,
-        required:true
+        type: Number, 
     },
     review:{
-        type: Number,
-        required:true
+        type: Number, 
     },
     stock:{
-        type: Number,
-        required:true
+        type: Number, 
     },
 
 },{

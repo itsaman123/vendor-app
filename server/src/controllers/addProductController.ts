@@ -5,6 +5,7 @@ import ProductModel from '../models/addProductModel';
 export async function addProducts(req: Request, res: Response) {
     try {
          const { p_id, title, name, price, discount, category, description, image, rating, review, stock } = req.body;
+         console.log(req.body);
         const product = new ProductModel({
             p_id,
             title,
