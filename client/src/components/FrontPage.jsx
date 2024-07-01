@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'react-bootstrap/Image';
 
 const FrontPage = () => {
   return (
@@ -16,8 +15,3 @@ const FrontPage = () => {
 }
 
 export default FrontPage
-
-
-
-
-

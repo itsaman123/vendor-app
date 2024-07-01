@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import axios from 'axios';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AddProduct = () => {
     const [formData, setFormData] = useState({
         title: '',
@@ -9,10 +12,10 @@ const AddProduct = () => {
         price: '',
         description: '',
         discount: '',
-        size: '',   
+        size: '',
         review: '',
         rating: '',
-        category: '',   
+        category: '',
         stock: '',
         image: null
     });
@@ -20,14 +23,14 @@ const AddProduct = () => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-      };
+    };
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
-        const { title, name, price, description, discount, size, review, rating, category, stock, image } = formData;    
+        // console.log(formData);
+        const { title, name, price, description, discount, size, review, rating, category, stock, image } = formData;
         try {
-            const data = await axios.post('https://vendor-api-chi.vercel.app/product/v1/addProducts', {
+            const data = await axios.post('http://localhost:8000/product/v1/addProducts', {
                 title,
                 name,
                 price,
@@ -39,19 +42,22 @@ const AddProduct = () => {
                 category,
                 stock,
                 image
-              });
-              if (data.status === false) {
+            });
+            if (data.status === false) {
                 console.log("error")
-              }
-              if (data.status === true) {
+                toast.error("Some error occured")
+            }
+            if (data.status === true) {
                 console.log("success")
-              }
-            
+                toast.success("Product added successfully")
+            }
+
         } catch (error) {
+            toast.error("Error");
             console.error('Error:', error);
         }
     };
-    
+
 
     return (
         <>
@@ -242,6 +248,8 @@ const AddProduct = () => {
                     </div>
                 </form>
             </div>
+            <ToastContainer />
+
 
             <Footer />
         </>

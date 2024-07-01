@@ -2,17 +2,17 @@ import mongoose, {Document, Schema, Model} from 'mongoose'
 
 interface IAddProducts extends Document{
     p_id:number,
-    title:string,// 
-    name:string, //
-    price:number, //
-    discount:number, //
-    category:string, //
-    description:string, //
-    size:string, //
-    image:string, //
-    rating:number, //
+    title:string,
+    name:string, 
+    price:number, 
+    discount:number, 
+    category:string, 
+    description:string, 
+    size:string, 
+    image:string, 
+    rating:number, 
     review:number,
-    stock:number, //
+    stock:number, 
     created_at:Date,
     updated_at:Date
 }

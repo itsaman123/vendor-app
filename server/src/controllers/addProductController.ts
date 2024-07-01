@@ -1,11 +1,11 @@
 
 import { Request, Response } from 'express';
 import ProductModel from '../models/addProductModel';
- 
+
 export async function addProducts(req: Request, res: Response) {
     try {
-         const { p_id, title, name, price, discount, category, description, image, rating, review, stock } = req.body;
-         console.log(req.body);
+        const { p_id, title, name, price, discount, category, description, image, rating, review, stock } = req.body;
+        // console.log(req.body);
         const product = new ProductModel({
             p_id,
             title,
@@ -29,7 +29,7 @@ export async function addProducts(req: Request, res: Response) {
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Internal Server Error"});
+        res.status(500).json({ message: "Internal Server Error" });
     }
 
 }
@@ -44,3 +44,28 @@ export async function getAllProducts(req: Request, res: Response) {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+export async function getProductsById(req: Request, res: Response) {
+    try {
+        // console.log(req.params);
+        const { id }: any = req.params;
+        const result = await ProductModel.findOne({ _id: id });
+        // console.log(result)
+        res.status(200).send(result);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+export async function deleteProductsById(req: Request, res: Response) {
+    try {
+        const { id }: any = req.params;
+        const result = await ProductModel.findByIdAndDelete(id);
+        res.status(200).send({ message: "Data deleted Successfully" });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+ 

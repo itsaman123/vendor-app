@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -17,19 +19,20 @@ const Login = () => {
         console.log(formData);
         const { password, email } = formData;
         try {
-            const data = await axios.post('https://vendor-api-chi.vercel.app/users/v1/login', {
+            const data = await axios.post('http://localhost:8000/users/v1/login', {
                 password,
                 email
             });
              if (data.status === 200) {
-                alert("User Logged In Successfully")
-                navigate('/home')
+                toast.success("User Logged In Successfully")
+                navigate('/')
             }
             else{
-                alert("Error occured");
+                toast.error("Error occured");
             }
 
         } catch (error) {
+            toast.error("Error")
             console.error('Error:', error);
         }
     };
@@ -54,9 +57,8 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </div>
-
                     </div>
-                    <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="flex flex-wrap -mx-3">
                         <div className="w-full px-3">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="price">
                                 Password
@@ -70,6 +72,7 @@ const Login = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                             />
+                             <p>Don't have an account, please <a href="/register">Register</a></p>
                         </div>
 
                     </div>
@@ -83,6 +86,8 @@ const Login = () => {
                     </div>
                 </form>
             </div>
+            <ToastContainer />
+
 
         </>
     );
