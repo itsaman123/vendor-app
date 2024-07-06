@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@mantine/carousel": "^7.11.1",
-    "@mantine/core": "^7.11.1",
-    "@mantine/hooks": "^7.11.1"
-  }
-}
