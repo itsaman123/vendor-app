@@ -134,6 +134,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { host } from './APIRoutes';
 const Cart = () => {
   const [items, setItems] = useState([]);
   const [orderSummary, setOrderSummary] = useState({
@@ -146,7 +147,7 @@ const Cart = () => {
 
   useEffect(() => {
     // Fetch cart items
-    axios.get('http://localhost:8000/cart/v1/cart/667480e76919b7ac4a79a068')
+    axios.get(`${host}/cart/v1/cart/667480e76919b7ac4a79a068`)
       .then((response) => {
         const itemsData = response.data;
         setItems(itemsData);
@@ -182,7 +183,7 @@ const Cart = () => {
   };
 
   const removeItem = (itemId) => {
-    axios.delete(`http://localhost:8000/cart/v1/cart/${itemId}`, {
+    axios.delete(`${host}/cart/v1/cart/${itemId}`, {
       data: { item_id: itemId }
     })
       .then((response) => {

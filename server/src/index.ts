@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const corsOptions={
-    origin:"http://localhost:3000",
-    // origin:"https://vendor-app-umber.vercel.app",
+    // origin:"http://localhost:3000",
+    origin:"https://vendor-app-umber.vercel.app",
     credentials:true,
     optionSuccessStatus:200
 }

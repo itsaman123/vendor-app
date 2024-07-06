@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { host } from './APIRoutes';
+
 const Register = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -20,7 +22,7 @@ const Register = () => {
         e.preventDefault();
          const { name, email, password } = formData;
         try {
-            const data = await axios.post('http://localhost:8000/users/v1/register', {
+            const data = await axios.post(`${host}/users/v1/register`, {
                 name,
                 email,
                 password

@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { host } from '../APIRoutes';
+ 
 const AddProduct = () => {
     const [formData, setFormData] = useState({
         title: '',
@@ -30,7 +32,7 @@ const AddProduct = () => {
         // console.log(formData);
         const { title, name, price, description, discount, size, review, rating, category, stock, image } = formData;
         try {
-            const data = await axios.post('http://localhost:8000/product/v1/addProducts', {
+            const data = await axios.post(`${host}/product/v1/addProducts`, {
                 title,
                 name,
                 price,

@@ -5,12 +5,14 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { host } from './APIRoutes';
+
 const ProductDetails = () => {
     const [item, setItem] = useState(null);
     const {id}=useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/product/v1/products/${id}`)
+        axios.get(`${host}/product/v1/products/${id}`)
             .then((response) => {
                 const pitem = response.data;
                 setItem(pitem);
@@ -23,7 +25,7 @@ const ProductDetails = () => {
 
     const addToCart = () => {
         if (item) {
-            axios.post(`http://localhost:8000/cart/v1/cart`, item)
+            axios.post(`${host}/cart/v1/cart`, item)
                 .then((response) => {
                     console.log('Added to cart:', response.data);
                      toast.success('Item added to cart successfully!');

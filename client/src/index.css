@@ -13,8 +13,7 @@
 .borderparent {
     border: 2px solid gray;
     border-radius: 10px;
-    /* min-width: 1000px; */
-}
+ }
 .logoimage{
     height: 72px;
     width: 169px;
@@ -26,8 +25,7 @@
 }
 
 
-/* Carousel.css */
-
+ 
 .full-width-carousel {
 	width: 100%;
 	margin: 0 auto;
@@ -51,3 +49,5 @@
 	width: 100%;
 	height: auto;
 }
+
+ 

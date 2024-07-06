@@ -3,12 +3,15 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { host } from './APIRoutes';
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
-        password:''
+        password: ''
     });
-    const navigate=useNavigate();
+    const navigate = useNavigate();
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -19,24 +22,22 @@ const Login = () => {
         console.log(formData);
         const { password, email } = formData;
         try {
-            const data = await axios.post('http://localhost:8000/users/v1/login', {
+            const response = await axios.post(`${host}/users/v1/login`, {
                 password,
                 email
             });
-             if (data.status === 200) {
-                toast.success("User Logged In Successfully")
-                navigate('/')
+            if (response.status === 200) {
+                localStorage.setItem('token', response.data.token);
+                toast.success("User Logged In Successfully");
+                navigate('/profile');
+            } else {
+                toast.error("Error occurred");
             }
-            else{
-                toast.error("Error occured");
-            }
-
         } catch (error) {
-            toast.error("Error")
+            toast.error("Error");
             console.error('Error:', error);
         }
     };
-
 
     return (
         <>
@@ -44,7 +45,7 @@ const Login = () => {
                 <form className="w-full max-w-lg" onSubmit={handleOnSubmit}>
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-full px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="title">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
                                 Email
                             </label>
                             <input
@@ -60,7 +61,7 @@ const Login = () => {
                     </div>
                     <div className="flex flex-wrap -mx-3">
                         <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="price">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
                                 Password
                             </label>
                             <input
@@ -72,11 +73,9 @@ const Login = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                             />
-                             <p>Don't have an account, please <a href="/register">Register</a></p>
+                            <p>Don't have an account? Please <a href="/register">Register</a></p>
                         </div>
-
                     </div>
-
                     <div className="flex flex-wrap -mx-3 mb-2">
                         <div className="md:w-2/3 m-3">
                             <button className="shadow bg-[#45ACC3] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
@@ -87,8 +86,6 @@ const Login = () => {
                 </form>
             </div>
             <ToastContainer />
-
-
         </>
     );
 };

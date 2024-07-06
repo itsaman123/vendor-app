@@ -10,6 +10,7 @@ import Shop from "./components/Shop";
 import Invoice from "./components/Invoice";
 import ProductDetails from "./components/ProductDetails";
 import ProductCarousel1 from "./components/ProductCarousel1";
+import UserProfile from "./components/UserProfile";
 export default function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/invoice" element={<Invoice />} />
         <Route path="/productdetails/:id" element={<ProductDetails />} />
         <Route path="/ProductCarousel1" element={<ProductCarousel1 />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );

@@ -69,3 +69,28 @@ export async function deleteProductsById(req: Request, res: Response) {
     }
 }
  
+ 
+export async function searchProducts(req: Request, res: Response) {
+    try {
+        const { keyword } = req.body;
+        
+        // Validate the input
+        if (!keyword) {
+            return res.status(400).json({ message: "Keyword is required" });
+        }
+
+        // Search products by description
+        const products = await ProductModel.find({
+            description: { $regex: keyword, $options: 'i' }
+        });
+        if(!products){
+            return res.status(404).json("Product not found");
+        
+        }
+
+        res.status(200).json(products);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}

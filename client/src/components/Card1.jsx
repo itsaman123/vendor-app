@@ -1,15 +1,17 @@
 import React from 'react'
-import Logo from '../heropageimage.png'
+// import Logo from '../heropageimage.png'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { host } from './APIRoutes'
+// require('dotenv').config()
 const Card1 = () => {
   const[item, setItem]=useState([]);
   useEffect(()=>{
-    axios.get('http://localhost:8000/product/v1/products')
+    axios.get(`${host}/product/v1/products`)
     .then((response)=>{
-      console.log(response.data);
-      setItem(response.data);
+      console.log(response);
+       setItem(response.data);
     })
     .catch((error)=>{
       console.log(error);
