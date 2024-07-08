@@ -8,22 +8,23 @@ import dotenv from 'dotenv';
 import connectDB from './db/connection';
 import cors from 'cors';
 dotenv.config();
-
+import morgan from 'morgan';
 const app = express();
 app.use(express.json());
- app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const corsOptions={
+const corsOptions = {
     // origin:"http://localhost:3000",
-    origin:"https://vendor-app-umber.vercel.app",
-    credentials:true,
-    optionSuccessStatus:200
+    origin: "https://vendor-app-umber.vercel.app",
+    credentials: true,
+    optionSuccessStatus: 200
 }
+app.use(morgan('dev'));
 app.use(cors(corsOptions));
 app.get('/', (req: Request, res: Response) => {
     res.json({
-        name:"Honey Kalash",
+        name: "Honey Kalash",
         developer: "itsaman123",
         version: "1.0.0",
     });

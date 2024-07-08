@@ -1,38 +1,38 @@
 
 import { Request, Response } from 'express';
 import ProductModel from '../models/addProductModel';
+import {Upload} from '../helper/upload';
 
 export async function addProducts(req: Request, res: Response) {
     try {
-        const { p_id, title, name, price, discount, category, description, image, rating, review, stock } = req.body;
-        // console.log(req.body);
+        const { title, name, price, discount, category, description, rating, review, stock } = req.body;
+
+        const result = await Upload(req.file?.path);
+
         const product = new ProductModel({
-            p_id,
             title,
             name,
             price,
             discount,
             category,
             description,
-            image,
+            image: result?.secure_url,
             rating,
             review,
             stock
-        })
-        const result = await product.save();
-        if (result) {
-            res.status(201).json({ message: "Product Added Successfully" });
-        }
-        else {
-            res.status(500).json({ message: "Internal Server Error" });
-        }
-    }
-    catch (error) {
-        console.log(error);
+        });
+
+        const savedProduct = await product.save();
+        res.status(201).json({ message: "Product Added Successfully" });
+    } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Internal Server Error" });
     }
-
 }
+
+
+
+
 
 export async function getAllProducts(req: Request, res: Response) {
     try {
