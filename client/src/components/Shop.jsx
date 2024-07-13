@@ -85,6 +85,7 @@ const Shop = () => {
                 src={products.image}
                 alt="Product"
                 className="h-80 w-72 object-cover rounded-t-xl"
+                loading='lazy'
               />
             </Link>
 

@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
+import AddressModel from '../models/userAddress';
 
 interface User {
     name: string;
@@ -84,6 +85,53 @@ export async function getProfile(req: Request, res: Response, next: NextFunction
             email: user.email,
             isAdmin: user.isAdmin,
          });
+    } catch (error) {
+        next(error);
+    }
+}
+export async function saveAddress(req: Request, res: Response, next: NextFunction) {
+    try {
+        const user_id = req.user;
+        if (!user_id) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        const{
+            house_no, 
+            street_name,
+            landmark,
+            postal_code,
+            city_district,
+            state,
+            phone
+        }=req.body;
+        const details=new AddressModel({
+            user_id,
+            house_no, 
+            street_name,
+            landmark,
+            postal_code,
+            city_district,
+            state,
+            phone
+        })
+        const data=await details.save();
+        if(!data._id){
+            return res.status(500).send("Bad request");
+        }
+        res.status(201).send("Address saved")
+    } catch (error) {
+        next(error);
+    }
+}
+
+export async function getAddress(req: Request, res: Response, next: NextFunction) {
+    try {
+        const user = req.user;
+        if (!user) {
+            return res.status(404).json({ error: 'no address found' });
+        }
+        const data=await AddressModel.find({user_id:user});
+        res.status(200).json(data);
     } catch (error) {
         next(error);
     }

@@ -43,24 +43,25 @@ const ProductCarousel1 = () => {
 
 	return (
 		<div className="w-full max-w-screen-lg mx-auto p-4">
+			<h1 className="text-5xl  m-5 text-center font-serif bg-gray-300 border-1 rounded-3">Explore the Variety of Fresh Products</h1>
 			<Slider {...settings}>
 				<div className="w-full">
 					<img
-						src="https://media.geeksforgeeks.org/wp-content/uploads/20240307153443/GeeksforGeeks-Offline-Classes.webp"
+						src="https://img.freepik.com/free-vector/coffee-advertisement-realistic-composition_1284-25843.jpg?ga=GA1.1.1157047494.1720549083&semt=ais_hybrid"
 						alt="Slide 1"
 						className="w-full h-auto object-cover"
 					/>
 				</div>
 				<div className="w-full">
 					<img
-						src="https://media.geeksforgeeks.org/wp-content/uploads/20240307153531/GeeksforGeeks-Classroom-Program---DSA-For-Interview-Preparation-Course.webp"
+						src="https://images.unsplash.com/photo-1677769237703-629d082d89bb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlJTIwcG93ZGVyfGVufDB8fDB8fHww"
 						alt="Slide 2"
 						className="w-full h-auto object-cover"
 					/>
 				</div>
 				<div className="w-full">
 					<img
-						src="https://media.geeksforgeeks.org/wp-content/uploads/20240307153605/School-programming.png"
+						src="https://images.unsplash.com/photo-1707425197455-bd0639a0efd4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z2hlZXxlbnwwfHwwfHx8MA%3D%3D"
 						alt="Slide 3"
 						className="w-full h-auto object-cover"
 					/>

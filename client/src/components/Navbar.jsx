@@ -1,13 +1,11 @@
 import React from 'react'
-import Logo from '../nutribucket.png'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 const navigation = [
   { name: 'Home', to: '/', current: false },
   { name: 'Shop', to: '/shop', current: false },
-  { name: 'Services', to: '/services', current: false },
   { name: 'Cart', to: '/cart', current: false },
   { name: 'AddProducts', to: '/addProducts', current: false },
   { name: 'Register', to: '/register', current: false },
@@ -52,8 +50,9 @@ const Navbar = () => {
                       src={Logo}
                       alt="Your Company"
                     /> */}
-                    <h1 className='text-white font-monospace'>Nutrie <span className="text-green-500">Bucket</span>
+                    <Link to="/" className='no-underline'><h1 className='text-white font-serif'>Nutrie <span className="text-green-500">Bucket</span>
                     </h1>
+                    </Link>
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">

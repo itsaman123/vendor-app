@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../heropageimage.png'
+import Logo from './assets/heropageimage.png'
 const HeroPage = () => {
   return (
     <>

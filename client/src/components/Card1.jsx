@@ -36,6 +36,7 @@ const Card1 = () => {
               src={products.image}
               alt="Product"
               className="h-80 w-72 object-cover rounded-t-xl"
+              loading='lazy'
             />
             <div className="px-4 py-3 w-72">
               <span className="text-gray-400 mr-3 uppercase text-xs">{products.title}</span>

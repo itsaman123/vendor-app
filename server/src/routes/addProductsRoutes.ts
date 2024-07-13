@@ -11,7 +11,7 @@ import multer from 'multer';
 var uploader= multer({
     storage: multer.diskStorage({}),
     dest: '..uploads/',
-    limits: { fileSize: 500000 }
+    limits: { fileSize: 5000000 }
 });
 
 
