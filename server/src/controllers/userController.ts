@@ -136,3 +136,12 @@ export async function getAddress(req: Request, res: Response, next: NextFunction
         next(error);
     }
 }
+export async function healthCheck(req: Request, res: Response, next: NextFunction) {
+    try {
+        
+        const data=await UserModel.findOne({_id:"6692d46f2408d6403a219431"});
+        res.status(200).json(data);
+    } catch (error) {
+        next(error);
+    }
+}
