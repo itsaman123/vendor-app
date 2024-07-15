@@ -6,17 +6,19 @@ import Card1 from '../components/Card1'
 // import FrontPage from '../components/FrontPage'
 // import AddProduct from '../components/admin/AddProduct'
 // import Shop from '../components/Shop'
-// import ProductCarousel1 from '../components/ProductCarousel1'
+import ProductCarousel1 from '../components/ProductCarousel1'
 import Banner from '../components/Banner'
 import HeroPage from '../components/HeroPage'
+import CategoryCard from '../components/CategoryCard'
 
 const Home = () => {
   return (
     <>
       <Navbar />
       <HeroPage />
-      <Banner />     
-      {/* <ProductCarousel1 /> */}
+      <Banner /> 
+      <CategoryCard />    
+      <ProductCarousel1 />
       <Card1 />
       {/* <Shop /> */}
       <Footer />

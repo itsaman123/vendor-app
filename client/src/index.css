@@ -24,30 +24,25 @@
 
 }
 
+/* ________________----------------------------------- */
 
- 
-.full-width-carousel {
+.carousel-wrapper {
 	width: 100%;
-	margin: 0 auto;
-}
-
-.full-width-slide {
-	width: 100vw;
-	height: 92vh;
+	max-width: 100vw;
+	overflow: hidden;
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-.full-width-slide img {
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: cover;
-}
-
-.slide-image {
+  }
+  
+  .carousel .slide {
+	background-color: #f0f0f0; /* Optional: Background color for slides */
+  }
+  
+  .carousel .slide img {
 	width: 100%;
-	height: auto;
-}
-
- 
+	height: 100vh;
+	display: block;
+  }
+  

@@ -2,7 +2,7 @@ import React from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-
+import Logo from './assets/logo4.png'
 const navigation = [
   { name: 'Home', to: '/', current: false },
   { name: 'Shop', to: '/shop', current: false },
@@ -44,15 +44,15 @@ const Navbar = () => {
                   </DisclosureButton>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
-                    {/* <img
-                      className="h-16 w-auto mt-2"
+                  <div className="flex flex-shrink-0 items-center overflow-hidden">
+                    <img
+                      className="h-16 w-auto mt-2 overflow-hidden"
                       src={Logo}
                       alt="Your Company"
-                    /> */}
-                    <Link to="/" className='no-underline'><h1 className='text-white font-serif'>Nutrie <span className="text-green-500">Bucket</span>
-                    </h1>
-                    </Link>
+                    />
+                    {/* <Link to="/" className='no-underline'><h1 className='text-white font-serif'>Nutrie <span className="text-green-500">Bucket</span> */}
+                    {/* </h1> */}
+                    {/* </Link> */}
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">

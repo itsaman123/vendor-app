@@ -14,6 +14,7 @@ import UserProfile from "./components/UserProfile";
 import ProductManage from "./components/admin/ProductManage";
 import AddAddress from "./components/AddAddress";
 import NewProductList from "./components/admin/NewProductList";
+import Payment from "./components/payments/Payment";
 export default function App() {
   return (
     <BrowserRouter>
@@ -31,7 +32,7 @@ export default function App() {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/admin/manageproducts" element={<ProductManage />} />
         <Route path="/users-address" element={<AddAddress />} />
-        <Route path="/newProducts" element={<NewProductList />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </BrowserRouter>
   );
