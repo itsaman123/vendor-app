@@ -12,7 +12,7 @@ const Shop = () => {
   const [searchItem, setSearchItem] = useState('');
 
   useEffect(() => {
-    axios.get(`${host}/product/v1/products`)
+    axios.get(`${process.env.REACT_APP_WEB_URL}/product/v1/products`)
       .then((response) => {
         console.log(response.data);
         setItem(response.data);
@@ -24,7 +24,7 @@ const Shop = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    axios.post(`${host}/product/v1/searchProduct`, {
+    axios.post(`${process.env.REACT_APP_WEB_URL}/product/v1/searchProduct`, {
       keyword: searchItem
     })
       .then((response) => {
@@ -36,7 +36,7 @@ const Shop = () => {
   };
   const addToCart = () => {
     if (item) {
-      axios.post(`${host}/cart/v1/cart`, item)
+      axios.post(`${process.env.REACT_APP_WEB_URL}/cart/v1/cart`, item)
         .then((response) => {
           console.log('Added to cart:', response.data);
           toast.success('Item added to cart successfully!');

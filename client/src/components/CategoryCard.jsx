@@ -7,10 +7,10 @@ import { host } from './APIRoutes';
 
 const CategoryCard = () => {
   const [item, setItem] = useState([]);
- 
+
 
   useEffect(() => {
-    axios.get(`${host}/product/v1/productbycategory/honey`)
+    axios.get(`${process.env.REACT_APP_WEB_URL}/product/v1/productbycategory/honey`)
       .then((response) => {
         console.log(response.data);
         setItem(response.data);
@@ -20,10 +20,10 @@ const CategoryCard = () => {
       });
   }, []);
 
-  
+
   const addToCart = () => {
     if (item) {
-      axios.post(`${host}/cart/v1/cart`, item)
+      axios.post(`${process.env.REACT_APP_WEB_URL}/cart/v1/cart`, item)
         .then((response) => {
           console.log('Added to cart:', response.data);
           toast.success('Item added to cart successfully!');
@@ -39,9 +39,9 @@ const CategoryCard = () => {
 
   return (
     <>
- 
-      
- <h1 className="text-5xl  m-5 text-center font-serif bg-gray-300 border-1 rounded-3">Explore the Variety of Fresh Products</h1>
+
+
+      <h1 className="text-5xl  m-5 text-center font-serif bg-gray-300 border-1 rounded-3">Explore the Variety of Fresh Products</h1>
       <section
         id="Projects"
         className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"

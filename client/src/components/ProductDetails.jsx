@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import axios from 'axios';
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { host } from './APIRoutes';
 
 const ProductDetails = () => {
     const [item, setItem] = useState(null);
-    const {id}=useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`${host}/product/v1/products/${id}`)
+        axios.get(`${process.env.REACT_APP_WEB_URL}/product/v1/products/${id}`)
             .then((response) => {
                 const pitem = response.data;
                 setItem(pitem);
@@ -25,10 +25,10 @@ const ProductDetails = () => {
 
     const addToCart = () => {
         if (item) {
-            axios.post(`${host}/cart/v1/cart`, item)
+            axios.post(`${process.env.REACT_APP_WEB_URL}/cart/v1/cart`, item)
                 .then((response) => {
                     console.log('Added to cart:', response.data);
-                     toast.success('Item added to cart successfully!');
+                    toast.success('Item added to cart successfully!');
                 })
                 .catch((error) => {
                     console.log('Error adding to cart:', error);
@@ -41,7 +41,7 @@ const ProductDetails = () => {
 
     return (
         <>
-        
+
             <Navbar />
 
             <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -131,7 +131,7 @@ const ProductDetails = () => {
                                     <span className="title-font font-medium text-2xl text-gray-900">
                                         Rs.{item.price}
                                     </span>
-                                    <button 
+                                    <button
                                         className="flex ml-auto text-white bg-black border-0 py-2 px-6 focus:outline-none hover:bg-white hover:text-white rounded"
                                         onClick={addToCart}
                                     >
@@ -146,7 +146,7 @@ const ProductDetails = () => {
                 </div>
             </section>
             <ToastContainer />
- 
+
             <Footer />
         </>
     );

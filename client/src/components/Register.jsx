@@ -20,18 +20,18 @@ const Register = () => {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
-         const { name, email, password } = formData;
+        const { name, email, password } = formData;
         try {
-            const data = await axios.post(`${host}/users/v1/register`, {
+            const data = await axios.post(`${process.env.REACT_APP_WEB_URL}/users/v1/register`, {
                 name,
                 email,
                 password
             });
-             if (data.status === 201) {
+            if (data.status === 201) {
                 toast.success("User created Successfully")
                 navigate('/login')
             }
-            else{
+            else {
                 toast.error("Error occured");
             }
 
@@ -48,7 +48,7 @@ const Register = () => {
                 <form className="w-full max-w-lg" onSubmit={handleOnSubmit}>
                     <div className="flex flex-wrap -mx-3 mb-2">
                         <div className="w-full md:w-full px-3">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="title">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="title">
                                 Email
                             </label>
                             <input
@@ -94,7 +94,7 @@ const Register = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                             />
-                             <p>Already have an account, please <a href="/login">LogIn</a></p>
+                            <p>Already have an account, please <a href="/login">LogIn</a></p>
                         </div>
                     </div>
 

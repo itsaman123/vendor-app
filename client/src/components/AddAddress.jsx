@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import { useState } from 'react'
 import axios from 'axios';
-import { host } from './APIRoutes';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const AddAddress = () => {
@@ -30,7 +30,8 @@ const AddAddress = () => {
         const { house_no, street_name, landmark, postal_code, city_district, state, phone } = address;
         
         try {
-            const data = await axios.post(`${host}/users/v1/user-address`, {
+            
+            const data = await axios.post(`${process.env.REACT_APP_WEB_URL}/users/v1/user-address`, {
                 house_no,
                 street_name,
                 landmark,

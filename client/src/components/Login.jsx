@@ -22,7 +22,7 @@ const Login = () => {
         console.log(formData);
         const { password, email } = formData;
         try {
-            const response = await axios.post(`${host}/users/v1/login`, {
+            const response = await axios.post(`${process.env.REACT_APP_WEB_URL}/users/v1/login`, {
                 password,
                 email
             });

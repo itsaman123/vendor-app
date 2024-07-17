@@ -16,26 +16,26 @@ const UserProfile = () => {
             return;
         }
 
-        axios.get(`${host}/users/v1/profile`, {
+        axios.get(`${process.env.REACT_APP_WEB_URL}/users/v1/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
-        .then((response) => {
-             setUserData(response.data);
-        })
-        .catch((error) => {
-            if (error.response) {
-                console.log('Error response:', error.response.data);
-                setError(error.response.data.message || 'An error occurred');
-            } else if (error.request) {
-                console.log('Error request:', error.request);
-                setError('No response from the server');
-            } else {
-                console.log('Error message:', error.message);
-                setError('An error occurred');
-            }
-        });
+            .then((response) => {
+                setUserData(response.data);
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log('Error response:', error.response.data);
+                    setError(error.response.data.message || 'An error occurred');
+                } else if (error.request) {
+                    console.log('Error request:', error.request);
+                    setError('No response from the server');
+                } else {
+                    console.log('Error message:', error.message);
+                    setError('An error occurred');
+                }
+            });
     }, []);
 
     return (
@@ -51,7 +51,7 @@ const UserProfile = () => {
                             Details and information about the user.
                         </p>
                     </div> */}
-                     
+
                     {udata ? (
                         <div className="border-t border-gray-200">
                             <dl>

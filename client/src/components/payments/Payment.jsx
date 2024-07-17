@@ -2,7 +2,7 @@ import { host } from '../APIRoutes';
 
 function Payment() {
   const handleCheckout = () => {
-    fetch(`${host}/product/v1/create-checkout-session`, {
+    fetch(`${process.env.REACT_APP_WEB_URL}/product/v1/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,17 +30,17 @@ function Payment() {
       <div className="overlay"></div>
       <div className="banner">
       </div>
-        <div className="banner-body">
-          <div className="DIV">
+      <div className="banner-body">
+        <div className="DIV">
 
           <h2>STEP INTO A TRANSFORMATIVE 4-DAY EXPERIENCE TO FAST-TRACK GROWTH</h2>
           <h1>BOOK A BUSINESS COACHING SESSION</h1>
-          </div>
-          <button onClick={handleCheckout}>Book Now</button>
         </div>
+        <button onClick={handleCheckout}>Book Now</button>
+      </div>
     </div>
 
-   
+
   );
 }
 

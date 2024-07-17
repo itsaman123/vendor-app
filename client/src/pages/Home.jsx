@@ -16,8 +16,8 @@ const Home = () => {
     <>
       <Navbar />
       <HeroPage />
-      <Banner /> 
-      <CategoryCard />    
+      <Banner />
+      <CategoryCard />
       <ProductCarousel1 />
       <Card1 />
       {/* <Shop /> */}

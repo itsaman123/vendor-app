@@ -48,7 +48,7 @@ const AddProduct = () => {
         data.append('file', image); // Append the file with the key 'file'
 
         try {
-            const response = await axios.post(`${host}/product/v1/addProducts`, data, {
+            const response = await axios.post(`${process.env.REACT_APP_WEB_URL}/product/v1/addProducts`, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
