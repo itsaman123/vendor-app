@@ -94,3 +94,15 @@ export async function searchProducts(req: Request, res: Response) {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+
+export async function getProductByCategory(req: Request, res: Response) {
+    try {
+        const products = await ProductModel.find({category:req.params.category});
+        res.status(200).json(products);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}

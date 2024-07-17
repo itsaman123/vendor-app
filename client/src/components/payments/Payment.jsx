@@ -1,44 +1,47 @@
-import CheckoutForm from './CheckoutForm';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
-import React, { useState, useEffect } from "react";
+import { host } from '../APIRoutes';
 
-import {loadStripe} from '@stripe/stripe-js';
-import {Elements} from '@stripe/react-stripe-js';
-import axios from "axios";
-// import PaymentForm from "./PaymentForm";
- 
-const stripe = loadStripe('Your API KEY');
-export default function Payment() {
-  const [clientSecret, setClientSecret] = useState(null);
- 
-    useEffect(() => {
-        axios
-            .post("http://localhost:4000/create-payment-intent", {
-                items: [{ id: 1, name: "momos", amount: 40.00 }],
-            })
-            .then((resp) => setClientSecret(resp.data.clientSecret));
-    }, []);
- 
-    const options = {
-        clientSecret,
-        theme: "stripe",
-    };
-   
-
+function Payment() {
+  const handleCheckout = () => {
+    fetch(`${host}/product/v1/create-checkout-session`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: [{ name: "Business Coaching Session", price: 500, quantity: 1 }],
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        window.location = url;
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
+  };
   return (
-    clientSecret && (
-      <Elements stripe={stripe} options={options}>
-          <CheckoutForm></CheckoutForm>
-      </Elements>
+    <div className="App">
+      <div className="navbar">
+        <h1>Business Coach</h1>
+      </div>
+      <div className="overlay"></div>
+      <div className="banner">
+      </div>
+        <div className="banner-body">
+          <div className="DIV">
 
-  )
-    //  <>
-    //  <Navbar />
-    //   <CheckoutForm />
-    //   <Footer />
-    //  </>
+          <h2>STEP INTO A TRANSFORMATIVE 4-DAY EXPERIENCE TO FAST-TRACK GROWTH</h2>
+          <h1>BOOK A BUSINESS COACHING SESSION</h1>
+          </div>
+          <button onClick={handleCheckout}>Book Now</button>
+        </div>
+    </div>
+
+   
   );
-};
+}
 
-
+export default Payment;

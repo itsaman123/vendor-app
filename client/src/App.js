@@ -13,7 +13,7 @@ import ProductCarousel1 from "./components/ProductCarousel1";
 import UserProfile from "./components/UserProfile";
 import ProductManage from "./components/admin/ProductManage";
 import AddAddress from "./components/AddAddress";
-import NewProductList from "./components/admin/NewProductList";
+// import NewProductList from "./components/admin/NewProductList";
 import Payment from "./components/payments/Payment";
 export default function App() {
   return (
